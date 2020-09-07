@@ -1,6 +1,4 @@
 
-
-
 .frontend {
     height: 90vh;
     padding-top: 105px;    
@@ -8,7 +6,6 @@
     background-size: cover;
     background-position:bottom;
 }
-
 
 .navbar-brand {
     font-weight: 700;
@@ -42,10 +39,10 @@
     margin-top: -30px;
     padding-top: 50px;
     padding-bottom: 50px;
-    border-radius: 10px;    
+    border-radius: 10px;
     width: 82%;
     text-align: center;
-    position: relative;    
+    position: relative;
 }
 
 .middleBox {

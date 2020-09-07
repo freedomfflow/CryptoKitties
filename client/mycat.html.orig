@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Cat Testing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/kitties.css">
+</head>
+<div class="cat_body">
+    <div class="cat_body_inner">
+    </div>
+    <div class="cat">
+        <div class="cat_ears">
+            <div class="cat_ears_ear cat_ears_ear_l">
+            </div>
+            <div class="cat_ears_ear cat_ears_ear_r">
+            </div>
+        </div>
+        <div class="cat_whiskers">
+            <div class="cat_whiskers_whisker cat_whiskers_whisker_l">
+                <span></span>
+            </div>
+            <div class="cat_whiskers_whisker cat_whiskers_whisker_r">
+                <span></span>
+            </div>
+        </div>
+        <div class="cat_face">
+            <div class="cat_face_pattern cat_face_pattern_t">
+            </div>
+            <div class="cat_face_pattern cat_face_pattern_l">
+            </div>
+            <div class="cat_face_pattern cat_face_pattern_r">
+            </div>
+            <div class="cat_eyes">
+                <div class="cat_eyes_eye cat_eyes_eye_l">
+                    <div class="cat_eyes_eyelid cat_eyes_eyelid_l"></div>
+                    <span></span>
+                </div>
+                <div class="cat_eyes_eye cat_eyes_eye_r">
+                    <div class="cat_eyes_eyelid cat_eyes_eyelid_r"></div>
+                    <span></span>
+                </div>
+            </div>
+            <div class="cat_nose">
+            </div>
+            <div class="cat_mouth">
+            </div>
+        </div>
+        <div class="cat_hands">
+            <div class="cat_hands_hand cat_hands_hand_l">
+            </div>
+            <div class="cat_hands_hand cat_hands_hand_r">
+            </div>
+        </div>
+
+        <div class="cat_legs">
+            <div class="cat_legs_leg cat_legs_leg_l">
+            </div>
+            <div class="cat_legs_leg cat_legs_leg_r">
+            </div>
+        </div>
+        <div class="cat_tail">
+            <div class="cat_tail_inner">
+                <span class="cat_tail_pattern cat_tail_pattern_1"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_2"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_3"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_4"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_5"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_6"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_7"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_8"></span>
+                <span class="cat_tail_pattern cat_tail_pattern_9"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,651 @@
+/* Create some dynamic elements */
+:root {
+    /*--page-background-color: hsl(0, 0%, 77%);*/
+    --page-background-color: hsl(200, 18%, 46%);
+    --tail-inner-before-color: #E2EFFF;
+    --eye-color: hsl(351, 100%, 86%);
+    --eye-border-color: hsl(0, 0%, 20%);
+    --eye-top-border-color: hsl(0, 0%, 20%);
+    --inner-eye-border-color: hsl(0, 0%, 20%);   /* not a good candidate to vary */
+    --eye-pupil-color: hsl(0, 0%, 100%);
+    --eye-pupil-surround-color: hsl(0, 0%, 20%);
+    --eyelid-color: hsl(42, 38%, 58%);
+    --fur-color: hsl(42, 38%, 58%);
+    --fur-border-color: hsl(54, 32%, 52%);
+    --face-marking-color: hsl(42, 28%, 32%);
+    --tail-color: hsl(42, 38%, 58%);
+    --tail-pattern-color: hsl(42, 28%, 32%);
+    --tail-tip-color: hsl(42, 38%, 58%);
+    --ear-border-color: hsl(42, 38%, 58%);
+    --inner-ear-color: hsl(31, 33%, 75%);
+    --whisker-color: hsl(0, 0%, 93%);
+    --paw-hand-color: hsl(42, 30%, 51%);
+    --paw-feet-color: hsl(42, 30%, 51%);
+    --cat-leg-after-color: hsl(0, 0%, 0%);
+    --nose-color: hsl(237, 41%, 23%);
+    --mouth-color: hsl(0, 0%, 30%);
+}
+
+* {
+    box-sizing: border-box;
+}
+html {
+    font-size: 10vw;
+}
+@media screen and (min-width: 500px) {
+    html {
+        font-size: 150%;
+    }
+}
+body {
+    background: var(--page-background-color);
+    font-family: 'Vollkorn', serif;
+    margin: 0;
+    padding: 0;
+}
+.cat_body {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 6em;
+    width: 6em;
+}
+.cat_body_inner {
+    background-color: var(--fur-color);
+    border: 0.2em solid var(--fur-border-color);
+    border-radius: 30% 70% 30% 5%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 18%;
+    width: 90%;
+    z-index: 4;
+}
+.cat {
+    height: 6em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.cat_face {
+    background-color: var(--fur-color);
+    border-radius: 50%;
+    height: 4em;
+    overflow: hidden;
+    position: absolute;
+    top: -3.5em;
+    left: 0%;
+    width: 6em;
+    z-index: 5;
+}
+.cat_face_pattern {
+    background-color: var(--face-marking-color);
+    position: absolute;
+}
+.cat_face_pattern:before, .cat_face_pattern:after {
+    background-color: var(--face-marking-color);
+    content: '';
+    position: absolute;
+}
+.cat_face_pattern_t {
+    border-radius: 0 0 50% 50%;
+    height: 1em;
+    margin-left: -0.1em;
+    top: 0;
+    left: 50%;
+    width: 0.2em;
+}
+.cat_face_pattern_t:before {
+    border-radius: 0 0 50% 50%;
+    height: 0.6em;
+    margin-left: -0.4em;
+    top: 0;
+    left: 50%;
+    width: 0.2em;
+}
+.cat_face_pattern_t:after {
+    border-radius: 0 0 50% 50%;
+    height: 0.6em;
+    margin-right: -0.4em;
+    top: 0;
+    right: 50%;
+    width: 0.2em;
+}
+.cat_face_pattern_l {
+    border-radius: 0 50% 50% 0;
+    height: 0.2em;
+    margin-top: -0.1em;
+    top: 50%;
+    left: 0;
+    width: 1em;
+}
+.cat_face_pattern_l:before {
+    border-radius: 0 50% 50% 0;
+    height: 0.2em;
+    margin-top: -0.6em;
+    top: 50%;
+    left: 0;
+    width: 0.6em;
+}
+.cat_face_pattern_l:after {
+    border-radius: 0 50% 50% 0;
+    height: 0.2em;
+    margin-bottom: -0.6em;
+    bottom: 50%;
+    left: 0;
+    width: 0.6em;
+}
+.cat_face_pattern_r {
+    border-radius: 50% 0 0 50%;
+    height: 0.2em;
+    margin-top: -0.1em;
+    top: 50%;
+    right: 0;
+    width: 1em;
+}
+.cat_face_pattern_r:before {
+    border-radius: 50% 0 0 50%;
+    height: 0.2em;
+    margin-top: -0.6em;
+    top: 50%;
+    right: 0;
+    width: 0.6em;
+}
+.cat_face_pattern_r:after {
+    border-radius: 50% 0 0 50%;
+    height: 0.2em;
+    margin-bottom: -0.6em;
+    bottom: 50%;
+    right: 0;
+    width: 0.6em;
+}
+
+/* Cat ear positioning */
+.cat_ears {
+    height: 1em;
+    position: absolute;
+    top: -3.5em;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+/* Cat ear color & shape */
+.cat_ears_ear {
+    background-color: var(--ear-border-color);
+    border-radius: 25%;
+    height: 1.8em;
+    position: absolute;
+    top: -0.3em;
+    width: 1.8em;
+}
+
+/* Inner ear color */
+.cat_ears_ear:before {
+    content: '';
+    background-color: var(--inner-ear-color);
+    border-radius: 25%;
+    height: 1.4em;
+    margin-top: -0.7em;
+    margin-left: -0.7em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.4em;
+}
+
+/* Ear positioning */
+.cat_ears_ear_l {
+    left: 0.5em;
+    transform: rotate(20deg);
+}
+
+/* Ear positioning */
+.cat_ears_ear_r {
+    right: 0.5em;
+    transform: rotate(-20deg);
+}
+
+/* Eye container location */
+.cat_eyes {
+    height: 1em;
+    position: absolute;
+    top: 1em;
+    width: 100%;
+}
+
+/* Eye position */
+.cat_eyes_eye {
+    background-color: var(--inner-eye-border-color);
+    border: 0.06em solid var(--eye-border-color);
+    border-top: 0.12em solid var(--eye-top-border-color);
+    height: 1em;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 1.3em;
+}
+
+/* Eye Color */
+.cat_eyes_eye:before {
+    background-color: var(--eye-color);
+    content: '';
+    height: 1em;
+    position: absolute;
+    top: 0;
+    width: 1.2em;
+}
+
+/* Black Surrounding Pupil */
+.cat_eyes_eye:after {
+    background-color: var(--eye-pupil-surround-color);
+    border-radius: 50%;
+    content: '';
+    height: 1em;
+    margin-top: -0.25em;
+    position: absolute;
+    top: 0em;
+    width: 1em;
+}
+
+/* Pupils */
+.cat_eyes_eye span {
+    background-color: var(--eye-pupil-color);
+    border-radius: 50%;
+    height: 0.2em;
+    margin-left: -0.1em;
+    margin-top: -0.2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.2em;
+    z-index: 1;
+}
+
+/* Eye Shape */
+.cat_eyes_eye_l {
+    border-radius: 0 70% 0 70%;
+    left: 1.1em;
+}
+
+/* Eye corner thickness  */
+.cat_eyes_eye_l:before {
+    border-radius: 0 50% 50% 50%;
+    left: 0;
+}
+
+/* Dark eye part positioning within eye */
+.cat_eyes_eye_l:after {
+    margin-left: -0.45em;
+    left: 50%;
+}
+
+/* Eye Shape */
+.cat_eyes_eye_r {
+    border-radius: 70% 0 70% 0;
+    right: 1.1em;
+}
+
+/* Eye corner thickness  */
+.cat_eyes_eye_r:before {
+    border-radius: 50% 0 50% 50%;
+    right: 0;
+}
+
+/* Dark eye part positioning within eye */
+.cat_eyes_eye_r:after {
+    margin-right: -0.45em;
+    right: 50%;
+}
+
+/* Eye Lid _ adjust height */
+.cat_eyes_eyelid {
+    background-color: var(--eyelid-color);
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.cat_nose {
+    border-top: 0.5em solid var(--nose-color);
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    height: 0.5em;
+    margin-left: -0.5em;
+    position: absolute;
+    top: 2.5em;
+    left: 50%;
+    width: 1em;
+}
+
+/* Mouth positioning */
+.cat_mouth {
+    margin-left: -1em;
+    overflow: hidden;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    height: 1em;
+    width: 2em;
+}
+
+/* Mouth shape */
+.cat_mouth:before, .cat_mouth:after {
+    border: 0.01em solid var(--mouth-color);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 0.8em;
+    position: absolute;
+    top: -0.4em;
+    width: 50%;
+}
+
+/* Adjust mouth height */
+.cat_mouth:before {
+    margin-left: -0.04em;
+    left: 0;
+}
+
+/* Adjust mouth height */
+.cat_mouth:after {
+    margin-right: -0.04em;
+    right: 0;
+}
+
+/* Whisker positioning */
+.cat_whiskers {
+    height: 1em;
+    position: absolute;
+    top: -1.5em;
+    left: 0;
+    width: 100%;
+    z-index: 8;
+}
+
+/* Whisker container position */
+.cat_whiskers_whisker {
+    height: 1em;
+    position: absolute;
+    top: 0;
+    width: 2.5em;
+}
+
+/* Whisker Position */
+.cat_whiskers_whisker:before, .cat_whiskers_whisker:after, .cat_whiskers_whisker span {
+    border-top: 0.03em solid var(--whisker-color);
+    height: 0.03em;
+    position: absolute;
+    left: 0;
+    width: 2.5em;
+}
+
+/* Whisker position relative to nose*/
+.cat_whiskers_whisker_l {
+    margin-left: -0.5em;
+    left: 0;
+}
+
+/* Whisker angle */
+.cat_whiskers_whisker_l:before {
+    content: '';
+    top: 0;
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+/* Whisker angle */
+.cat_whiskers_whisker_l:after {
+    content: '';
+    margin-top: -0.005em;
+    top: 0.5em;
+}
+
+/* Whisker placement */
+.cat_whiskers_whisker_l span {
+    bottom: 0;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+
+/* Horizontal whisker placement  relative to nose*/
+.cat_whiskers_whisker_r {
+    margin-right: -0.5em;
+    right: 0;
+}
+
+/* Whisker angle */
+.cat_whiskers_whisker_r:before {
+    content: '';
+    top: 0;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+/* Whisker verticle placement */
+.cat_whiskers_whisker_r:after {
+    content: '';
+    margin-top: -0.005em;
+    top: 0.5em;
+}
+.cat_whiskers_whisker_r span {
+    bottom: 0;
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+/* Hand position */
+.cat_hands {
+    height: 1em;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+}
+/* Hand shape */
+.cat_hands_hand {
+    background-color: var(--paw-hand-color);
+    border-radius: 50%;
+    height: 1em;
+    overflow: hidden;
+    position: absolute;
+    left: 2em;
+    top: 0.5em;
+    width: 2em;
+}
+/* Toe dividers */
+.cat_hands_hand:before {
+    border-right: 0.08em solid var(--cat-leg-after-color);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0.3em;
+    width: 0.6em;
+}
+.cat_hands_hand:after {
+    border-left: 0.08em solid var(--cat-leg-after-color);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0.3em;
+    width: 0.6em;
+}
+.cat_hands_hand_l {
+    left: 0;
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+.cat_hands_hand_r {
+    right: 0;
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+}
+/* Let Position */
+.cat_legs {
+    height: 1em;
+    position: absolute;
+    bottom: -0.5em;
+    left: 0;
+    width: 100%;
+    z-index: 8;
+}
+/* Tip of tail */
+.cat_legs:after {
+    background-color: var(--tail-tip-color);
+    border-radius: 100%;
+    content: '';
+    height: 0.5em;
+    margin-bottom: -0.25em;
+    position: absolute;
+    bottom: 2.5em;
+    right: -2em;
+    width: 0.5em;
+    z-index: 2;
+}
+/* Foot shapes */
+.cat_legs_leg {
+    background-color: var(--paw-feet-color);
+    border-radius: 50%;
+    height: 1em;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 2em;
+}
+/* Toe lines */
+.cat_legs_leg:before {
+    border-right: 0.08em solid var(--cat-leg-after-color);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0.3em;
+    width: 0.6em;
+}
+/* Toe lines */
+.cat_legs_leg:after {
+    border-left: 0.08em solid var(--cat-leg-after-color);
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0.3em;
+    width: 0.6em;
+}
+/* Bottom foot position */
+.cat_legs_leg_l {
+    left: 0;
+    /*-webkit-transform: rotate(20deg);*/
+    /*transform: rotate(20deg);*/
+}
+/* Bottom foot position */
+.cat_legs_leg_r {
+    right: 0;
+    /*-webkit-transform: rotate(-20deg);*/
+    /*transform: rotate(-20deg);*/
+}
+.cat_tail {
+    height: 2em;
+    position: absolute;
+    bottom: 0.04em;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+.cat_tail_inner {
+    background-color: var(--tail-color);
+    border-radius: 0 0 3em 3em;
+    height: 2em;
+    overflow: hidden;
+    position: absolute;
+    top: 0.1em;
+    left: 5em;
+    width: 3em;
+}
+/* set to background color to show curvature of tail */
+.cat_tail_inner:before {
+    background: var(--tail-inner-before-color);
+    border-radius: 0 0 2em 2em;
+    content: '';
+    height: 3em;
+    margin-left: -1em;
+    overflow: hidden;
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    width: 2em;
+    z-index: 4;
+}
+.cat_tail_pattern {
+    background-color: var(--tail-pattern-color);
+    height: 0.2em;
+    position: absolute;
+    width: 0.5em;
+}
+.cat_tail_pattern:nth-child(odd) {
+    border-radius: 50% 0 0 50%;
+}
+.cat_tail_pattern:nth-child(even) {
+    border-radius: 0 50% 50% 0;
+}
+.cat_tail_pattern_1 {
+    top: 0.2em;
+    left: 0.1em;
+}
+.cat_tail_pattern_2 {
+    top: 0.7em;
+    left: -0.1em;
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+}
+.cat_tail_pattern_3 {
+    top: 1em;
+    left: 0.3em;
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+}
+.cat_tail_pattern_4 {
+    top: 1.5em;
+    left: 0.5em;
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-60deg);
+}
+.cat_tail_pattern_5 {
+    top: 1.5em;
+    left: 1.1em;
+    -webkit-transform: rotate(-80deg);
+    transform: rotate(-80deg);
+}
+.cat_tail_pattern_6 {
+    top: 1.7em;
+    left: 1.6em;
+    -webkit-transform: rotate(-100deg);
+    transform: rotate(-100deg);
+}
+.cat_tail_pattern_7 {
+    top: 1.2em;
+    left: 2em;
+    -webkit-transform: rotate(-130deg);
+    transform: rotate(-130deg);
+}
+.cat_tail_pattern_8 {
+    top: 0.9em;
+    left: 2.6em;
+    -webkit-transform: rotate(-150deg);
+    transform: rotate(-150deg);
+}
+.cat_tail_pattern_9 {
+    top: 0.4em;
+    left: 2.4em;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    z-index: 3;
+}
