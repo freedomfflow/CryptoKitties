@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/css/frontend.css">
 </head>
 <body>
-<div class="container p-2" style="margin-top: 12vh;margin-bottom: 10vh;">
+<div class="container p-1" style="margin-top: 12vh;margin-bottom: 10vh;">
     <div align="center">
         <h1 class="c-white">Kitties-Factory</h1>
         <p class="c-white">Create your custom Kitty</p>
@@ -111,13 +111,29 @@
             </div>
         </div>
         <div class="col-lg-7 cattributes m-2 light-b-shadow">
-
             <!-- Cat colors -->
             <div id="catColors">
                 <div class="form-group">
-                    <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2"
-                                                                            id="headcode"></span></label>
+                    <label for="formControlRange"><b>Head and body color</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+                </div>
+            </div>
+            <div id="facePartColors">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Facial Feature color</b><span class="badge badge-dark ml-2" id="mouthcode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="facialfeaturecolor">
+                </div>
+            </div>
+            <div id="eyeColors">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Eye Color</b><span class="badge badge-dark ml-2" id="eyecode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="eyecolor">
+                </div>
+            </div>
+            <div id="pawEarColors">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Paw & Marking Color</b><span class="badge badge-dark ml-2" id="pawcode"></span></label>
+                    <input type="range" min="10" max="98" class="form-control-range" id="pawcolor">
                 </div>
             </div>
         </div>

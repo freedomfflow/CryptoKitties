@@ -1,29 +1,36 @@
 /* Create some dynamic elements */
 :root {
-    /*--page-background-color: hsl(0, 0%, 77%);*/
+    /*
+     * Base colors should the hsl param values in a comma separated string
+     *  - in javascript, I will parse this string, make a computation, and reset color
+     */
+    --base__fur-color: 42,38,58;
+    --base__mouth-color: 237,41,23;
+    --base__eye-color: 351,100,86;
+    --base__paw-color: 42,28,32;                    /* face marking & paws & inner ear */
     --page-background-color: hsl(200, 18%, 46%);
     --tail-inner-before-color: #E2EFFF;
+    --fur-color: hsl(42, 38%, 58%);
+    --tail-color: var(--fur-color);
+    --tail-tip-color: var(--fur-color);
+    --ear-border-color: var(--fur-color);
+    --fur-border-color: hsl(54, 32%, 52%);
+    --mouth-color: hsl(237, 41%, 23%);
+    --nose-color: var(--mouth-color);
+    --whisker-color: var(--mouth-color);
+    --eye-top-border-color: var(--mouth-color);
+    --face-marking-color: hsl(42, 28%, 32%);
+    --tail-pattern-color: var(--face-marking-color);
+    --inner-ear-color: hsl(31, 33%, 75%);
+    --paw-hand-color: var(--inner-ear-color);
+    --paw-feet-color: var(--inner-ear-color);
+    --cat-leg-after-color: hsl(0, 0%, 0%);
     --eye-color: hsl(351, 100%, 86%);
     --eye-border-color: hsl(0, 0%, 20%);
-    --eye-top-border-color: hsl(0, 0%, 20%);
-    --inner-eye-border-color: hsl(0, 0%, 20%);   /* not a good candidate to vary */
+    --eye-pupil-surround-color: var(--eye-border-color);
     --eye-pupil-color: hsl(0, 0%, 100%);
-    --eye-pupil-surround-color: hsl(0, 0%, 20%);
-    --eyelid-color: hsl(42, 38%, 58%);
-    --fur-color: hsl(42, 38%, 58%);
-    --fur-border-color: hsl(54, 32%, 52%);
-    --face-marking-color: hsl(42, 28%, 32%);
-    --tail-color: hsl(42, 38%, 58%);
-    --tail-pattern-color: hsl(42, 28%, 32%);
-    --tail-tip-color: hsl(42, 38%, 58%);
-    --ear-border-color: hsl(42, 38%, 58%);
-    --inner-ear-color: hsl(31, 33%, 75%);
-    --whisker-color: hsl(0, 0%, 93%);
-    --paw-hand-color: hsl(42, 30%, 51%);
-    --paw-feet-color: hsl(42, 30%, 51%);
-    --cat-leg-after-color: hsl(0, 0%, 0%);
-    --nose-color: hsl(237, 41%, 23%);
-    --mouth-color: hsl(0, 0%, 30%);
+    --eyelid-color: hsl(42, 38%, 58%);           /* not using eyelids - maybe a cattribute */
+    --inner-eye-border-color: hsl(0, 0%, 20%);   /* not a good candidate to vary */
 }
 
 * {
@@ -32,9 +39,13 @@
 html {
     font-size: 10vw;
 }
+.container {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
 @media screen and (min-width: 500px) {
     html {
-        font-size: 150%;
+        font-size: 200%;
     }
 }
 body {
@@ -42,6 +53,13 @@ body {
     font-family: 'Vollkorn', serif;
     margin: 0;
     padding: 0;
+}
+.cat {
+    height: 6em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 .cat_body {
     -webkit-transform: translate(-50%, -50%);
@@ -53,7 +71,7 @@ body {
     width: 6em;
 }
 .cat_body_inner {
-    background-color: var(--fur-color);
+    background: var(--fur-color);
     border: 0.2em solid var(--fur-border-color);
     border-radius: 30% 70% 30% 5%;
     height: 100%;
@@ -63,15 +81,8 @@ body {
     width: 90%;
     z-index: 4;
 }
-.cat {
-    height: 6em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
 .cat_face {
-    background-color: var(--fur-color);
+    background: var(--fur-color);
     border-radius: 50%;
     height: 4em;
     overflow: hidden;
@@ -82,11 +93,11 @@ body {
     z-index: 5;
 }
 .cat_face_pattern {
-    background-color: var(--face-marking-color);
+    background: var(--face-marking-color);
     position: absolute;
 }
 .cat_face_pattern:before, .cat_face_pattern:after {
-    background-color: var(--face-marking-color);
+    background: var(--face-marking-color);
     content: '';
     position: absolute;
 }
@@ -175,7 +186,7 @@ body {
 
 /* Cat ear color & shape */
 .cat_ears_ear {
-    background-color: var(--ear-border-color);
+    background: var(--ear-border-color);
     border-radius: 25%;
     height: 1.8em;
     position: absolute;
@@ -186,7 +197,7 @@ body {
 /* Inner ear color */
 .cat_ears_ear:before {
     content: '';
-    background-color: var(--inner-ear-color);
+    background: var(--inner-ear-color);
     border-radius: 25%;
     height: 1.4em;
     margin-top: -0.7em;
@@ -219,7 +230,7 @@ body {
 
 /* Eye position */
 .cat_eyes_eye {
-    background-color: var(--inner-eye-border-color);
+    background: var(--inner-eye-border-color);
     border: 0.06em solid var(--eye-border-color);
     border-top: 0.12em solid var(--eye-top-border-color);
     height: 1em;
@@ -231,7 +242,7 @@ body {
 
 /* Eye Color */
 .cat_eyes_eye:before {
-    background-color: var(--eye-color);
+    background: var(--eye-color);
     content: '';
     height: 1em;
     position: absolute;
@@ -241,7 +252,7 @@ body {
 
 /* Black Surrounding Pupil */
 .cat_eyes_eye:after {
-    background-color: var(--eye-pupil-surround-color);
+    background: var(--eye-pupil-surround-color);
     border-radius: 50%;
     content: '';
     height: 1em;
@@ -253,7 +264,7 @@ body {
 
 /* Pupils */
 .cat_eyes_eye span {
-    background-color: var(--eye-pupil-color);
+    background: var(--eye-pupil-color);
     border-radius: 50%;
     height: 0.2em;
     margin-left: -0.1em;
@@ -303,7 +314,7 @@ body {
 
 /* Eye Lid _ adjust height */
 .cat_eyes_eyelid {
-    background-color: var(--eyelid-color);
+    background: var(--eyelid-color);
     height: 0;
     position: absolute;
     left: 0;
@@ -450,7 +461,7 @@ body {
 }
 /* Hand shape */
 .cat_hands_hand {
-    background-color: var(--paw-hand-color);
+    background: var(--paw-hand-color);
     border-radius: 50%;
     height: 1em;
     overflow: hidden;
@@ -499,7 +510,7 @@ body {
 }
 /* Tip of tail */
 .cat_legs:after {
-    background-color: var(--tail-tip-color);
+    background: var(--tail-tip-color);
     border-radius: 100%;
     content: '';
     height: 0.5em;
@@ -512,7 +523,7 @@ body {
 }
 /* Foot shapes */
 .cat_legs_leg {
-    background-color: var(--paw-feet-color);
+    background: var(--paw-feet-color);
     border-radius: 50%;
     height: 1em;
     overflow: hidden;
@@ -561,7 +572,7 @@ body {
     z-index: 0;
 }
 .cat_tail_inner {
-    background-color: var(--tail-color);
+    background: var(--tail-color);
     border-radius: 0 0 3em 3em;
     height: 2em;
     overflow: hidden;
@@ -585,7 +596,7 @@ body {
     z-index: 4;
 }
 .cat_tail_pattern {
-    background-color: var(--tail-pattern-color);
+    background: var(--tail-pattern-color);
     height: 0.2em;
     position: absolute;
     width: 0.5em;
