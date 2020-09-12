@@ -14,6 +14,7 @@
     --tail-color: var(--fur-color);
     --tail-tip-color: var(--fur-color);
     --ear-border-color: var(--fur-color);
+    --eyelid-color: var(--inner-ear-color);
     --fur-border-color: hsl(54, 32%, 52%);
     --mouth-color: hsl(237, 41%, 23%);
     --nose-color: var(--mouth-color);
@@ -29,8 +30,18 @@
     --eye-border-color: hsl(0, 0%, 20%);
     --eye-pupil-surround-color: var(--eye-border-color);
     --eye-pupil-color: hsl(0, 0%, 100%);
-    --eyelid-color: hsl(42, 38%, 58%);           /* not using eyelids - maybe a cattribute */
     --inner-eye-border-color: hsl(0, 0%, 20%);   /* not a good candidate to vary */
+
+    /*
+     * Cattributes
+     */
+    --eyelid-height: 0;
+    --top-decoration-angle: 0;
+    --top-decoration-neg-angle: var(--top-decoration-angle);
+    --center-decoration-thickness: .2em;
+    --outer-decoration-thickness: .2em;
+    --cat-tail-height: 0.2em;
+    --cat-tail-width: 0.5em;
 }
 
 * {
@@ -116,6 +127,7 @@ body {
     top: 0;
     left: 50%;
     width: 0.2em;
+    transform: rotate(var(--top-decoration-angle));
 }
 .cat_face_pattern_t:after {
     border-radius: 0 0 50% 50%;
@@ -124,10 +136,11 @@ body {
     top: 0;
     right: 50%;
     width: 0.2em;
+    transform: rotate(var(--top-decoration-neg-angle));
 }
 .cat_face_pattern_l {
     border-radius: 0 50% 50% 0;
-    height: 0.2em;
+    height: var(--center-decoration-thickness);
     margin-top: -0.1em;
     top: 50%;
     left: 0;
@@ -135,7 +148,7 @@ body {
 }
 .cat_face_pattern_l:before {
     border-radius: 0 50% 50% 0;
-    height: 0.2em;
+    height: var(--outer-decoration-thickness);
     margin-top: -0.6em;
     top: 50%;
     left: 0;
@@ -143,7 +156,7 @@ body {
 }
 .cat_face_pattern_l:after {
     border-radius: 0 50% 50% 0;
-    height: 0.2em;
+    height: var(--outer-decoration-thickness);
     margin-bottom: -0.6em;
     bottom: 50%;
     left: 0;
@@ -151,7 +164,7 @@ body {
 }
 .cat_face_pattern_r {
     border-radius: 50% 0 0 50%;
-    height: 0.2em;
+    height: var(--center-decoration-thickness);
     margin-top: -0.1em;
     top: 50%;
     right: 0;
@@ -159,7 +172,7 @@ body {
 }
 .cat_face_pattern_r:before {
     border-radius: 50% 0 0 50%;
-    height: 0.2em;
+    height: var(--outer-decoration-thickness);
     margin-top: -0.6em;
     top: 50%;
     right: 0;
@@ -167,7 +180,7 @@ body {
 }
 .cat_face_pattern_r:after {
     border-radius: 50% 0 0 50%;
-    height: 0.2em;
+    height: var(--outer-decoration-thickness);
     margin-bottom: -0.6em;
     bottom: 50%;
     right: 0;
@@ -315,7 +328,7 @@ body {
 /* Eye Lid _ adjust height */
 .cat_eyes_eyelid {
     background: var(--eyelid-color);
-    height: 0;
+    height: var(--eyelid-height);
     position: absolute;
     left: 0;
     top: 0;
@@ -597,9 +610,9 @@ body {
 }
 .cat_tail_pattern {
     background: var(--tail-pattern-color);
-    height: 0.2em;
+    height: var(--cat-tail-height);
     position: absolute;
-    width: 0.5em;
+    width: var(--cat-tail-width);
 }
 .cat_tail_pattern:nth-child(odd) {
     border-radius: 50% 0 0 50%;

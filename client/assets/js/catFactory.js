@@ -171,34 +171,87 @@ async function pawColor(color,code) {
 //Functions below will be used later on in the project
 //###################################################
 function eyeVariation(num) {
-
-    $('#dnashape').html(num)
-    switch (num) {
-        case 1:
-            normalEyes()
-            $('#eyeName').html('Basic')
-            break
+    // Set displayed dna value for eye shape
+    $('#dnashape').html(num);
+    if (parseInt(num) < 0 || parseInt(num) > 9) {
+        num = 0;
     }
+    adjustEyelids(num)
+    $('#eyeshapecode').html(parseInt(num * 10) + '%');        // slider state description
 }
 
 function decorationVariation(num) {
+    $('#headdecorationcode').html(num + '<sup>o</sup>');
     $('#dnadecoration').html(num)
-    switch (num) {
+    headDecoration(num);
+}
+
+function faceDecorationVariation(num) {
+    $('#facesidedecorationcode').html(parseFloat(num/10) + 'em');
+    $('#dnadecorationSides').html(num)
+    faceDecoration(num);
+}
+
+function tailDecorationVariation(num) {
+    $('#taildecorationcode').html(parseInt(num));
+    $('#dnadecorationMid').html(num)
+    tailDecoration(num);
+}
+
+async function adjustEyelids(num) {
+    let eyelidHeight = '--eyelid-height';
+    await document.documentElement.style.setProperty(eyelidHeight, parseInt(num*2) + 'px');
+}
+
+async function headDecoration(num) {
+    let topDecorationAngle = '--top-decoration-angle';
+    let topDecorationNegAngle = '--top-decoration-neg-angle';
+    await document.documentElement.style.setProperty(topDecorationAngle, parseInt(num) + 'deg');
+    await document.documentElement.style.setProperty(topDecorationNegAngle, (parseInt(num) * -1) + 'deg');
+}
+
+async function faceDecoration(num) {
+    let centerDecorationThickness = '--center-decoration-thickness';
+    let outerDecorationThickness = '--outer-decoration-thickness';
+    await document.documentElement.style.setProperty(centerDecorationThickness, parseFloat(num/10) + 'em');
+    await document.documentElement.style.setProperty(outerDecorationThickness, parseFloat(num/10) + 'em');
+}
+
+async function tailDecoration(num) {
+    let tailDecorationWidth = '--cat-tail-width';
+    let tailDecorationHeight = '--cat-tail-height';
+    let width = num;
+    let height = num;
+    switch(parseInt(num)) {
         case 1:
-            $('#decorationName').html('Basic')
-            normaldecoration()
-            break
+            width = 0.3;
+            height = 0.2;
+            break;
+        case 2:
+            width = 0.4;
+            height = 0.2;
+            break;
+        case 3:
+            width = 0.5;
+            height = 0.2;
+            break;
+        case 4:
+            width = 0.6;
+            height = 0.2;
+            break;
+        case 5:
+            width = 0.7;
+            height = 0.3;
+            break;
+        case 6:
+            width = 0.7;
+            height = 0.4;
+            break;
+        case 7:
+            width = 0.7;
+            height = 0.5;
+            break;
     }
-}
-
-async function normalEyes() {
-    await $('.cat__eye').find('span').css('border', 'none')
-}
-
-async function normaldecoration() {
-    //Remove all style from other decorations
-    //In this way we can also use normalDecoration() to reset the decoration style
-    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
-    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
+    await document.documentElement.style.setProperty(tailDecorationWidth, parseFloat(width) + 'em');
+    await document.documentElement.style.setProperty(tailDecorationHeight, parseFloat(height) + 'em');
 }

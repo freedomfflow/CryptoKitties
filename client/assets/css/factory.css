@@ -11,11 +11,12 @@
     padding: 25px;
     background-color: #ededed;
     border-radius: 10px;
+    font-size: 70%;
 }
 
 .dnaDiv {
     position: absolute;
     left:20px;
-    bottom: 5px;
-
+    bottom: 25px;
+    font-size: 80%;
 }

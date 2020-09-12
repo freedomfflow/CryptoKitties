@@ -136,6 +136,30 @@
                     <input type="range" min="10" max="98" class="form-control-range" id="pawcolor">
                 </div>
             </div>
+            <div id="eyeShape">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeshapecode"></span></label>
+                    <input type="range" min="0" max="8" class="form-control-range" id="eyeshape">
+                </div>
+            </div>
+            <div id="decorationTop">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Head Decoration</b><span class="badge badge-dark ml-2" id="headdecorationcode"></span></label>
+                    <input type="range" min="0" max="45" class="form-control-range" id="headdecoration">
+                </div>
+            </div>
+            <div id="decorationSides">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Face Side Decorations</b><span class="badge badge-dark ml-2" id="facesidedecorationcode"></span></label>
+                    <input type="range" min="0" max="20" class="form-control-range" id="facesidedecoration">
+                </div>
+            </div>
+            <div id="decorationTail">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Tail Decorations</b><span class="badge badge-dark ml-2" id="taildecorationcode"></span></label>
+                    <input type="range" min="1" max="10" class="form-control-range" id="taildecoration">
+                </div>
+            </div>
         </div>
     </div>
     <br>
