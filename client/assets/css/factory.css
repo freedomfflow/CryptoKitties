@@ -20,3 +20,14 @@
     bottom: 25px;
     font-size: 80%;
 }
+
+.tab-pane {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    background: white;
+}
+
+.btn-group {
+    margin: 15px auto;
+}

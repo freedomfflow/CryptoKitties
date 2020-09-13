@@ -104,16 +104,24 @@
                     <!-- Cattributes -->
                     <span id="dnashape"></span>
                     <span id="dnadecoration"></span>
-                    <span id="dnadecorationMid"></span>
                     <span id="dnadecorationSides"></span>
+                    <span id="dnadecorationMid"></span>
                     <span id="dnadanimation"></span>
                     <span id="dnaspecial"></span>
                 </b>
             </div>
         </div>
         <div class="col-lg-7 cattributes m-2 light-b-shadow">
-            <div class="row">
-                <div class="col-lg-6">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#colors" class="nav-link active" data-toggle="tab">Colors</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cattributes" class="nav-link" data-toggle="tab">Cattributes</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="colors">
                     <!-- Cat colors -->
                     <div id="catColors">
                         <div class="form-group">
@@ -140,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=col-lg-6">
+                <div class="tab-pane fade" id="cattributes">
                     <div id="eyeShape">
                         <div class="form-group">
                             <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" id="eyeshapecode"></span></label>
@@ -165,13 +173,20 @@
                             <input type="range" min="1" max="10" class="form-control-range" id="taildecoration">
                         </div>
                     </div>
+                    <div id="animations">
+                        <div class="form-group">
+                            <label for="formControlRange"><b>Animations</b><span class="badge badge-dark ml-2" id="animationcode"></span></label>
+                            <input type="range" min="1" max="3" class="form-control-range" id="animation">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="animations">
-                <div class="form-group">
-                    <label for="formControlRange"><b>Animations</b><span class="badge badge-dark ml-2" id="animationcode"></span></label>
-                    <input type="range" min="1" max="3" class="form-control-range" id="animation">
-                </div>
+            <div class="row">
+               <div class="btn-group btn-group-sm">
+                 <button type="button" class="btn btn-secondary set-dna" id="default-kitty">Default Kitty</button>
+                 <button type="button" class="btn btn-primary set-dna" id="random-kitty">Random Kitty</button>
+                 <button type="button" class="btn btn-danger set-dna" id="create-kitty">Create Kitty</button>
+               </div>
             </div>
         </div>
     </div>

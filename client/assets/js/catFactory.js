@@ -199,7 +199,6 @@ function tailDecorationVariation(num) {
 }
 
 function animationVariation(num) {
-    console.log('animation variation wiht num = ' + num);
     clearAnimations();
     switch(parseInt(num)) {
         case 1:
@@ -207,7 +206,6 @@ function animationVariation(num) {
             headAnimation();
             break;
         case 2:
-            console.log('in case 2');
             $('#animationcode').html('Tail (' + num + ')');
             tailAnimation();
             break;

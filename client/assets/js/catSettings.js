@@ -24,10 +24,77 @@ $( document ).ready(function() {
     
   $('#dnashape').html(defaultDNA.eyesShape)
   $('#dnadecoration').html(defaultDNA.decorationPattern)
-  $('#dnadecorationSides').html(defaultDNA.decorationSidesPattern)
   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
+  $('#dnadecorationSides').html(defaultDNA.decorationSidesPattern)
   $('#dnaanimation').html(defaultDNA.animation)
   $('#dnaspecial').html(defaultDNA.lastNum)
+
+  $('.set-dna').click((e) =>  {
+      let id = e.target.id;
+      if (id === "default-kitty") {
+          $('#dnabody').html(defaultDNA.headColor);
+          $('#dnamouth').html(defaultDNA.mouthColor);
+          $('#dnaeyes').html(defaultDNA.eyesColor);
+          $('#dnaears').html(defaultDNA.earsColor);
+          $('#dnashape').html(defaultDNA.eyesShape)
+          $('#dnadecoration').html(defaultDNA.decorationPattern)
+          $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
+          $('#dnadecorationSides').html(defaultDNA.decorationSidesPattern)
+          $('#dnaanimation').html(defaultDNA.animation)
+          $('#dnaspecial').html(defaultDNA.lastNum)
+          renderCat(defaultDNA)
+      }
+      if (id === "random-kitty") {
+          let bodyRandom = Math.floor(Math.random()*100);
+          let faceRandom = Math.floor(Math.random()*100);
+          let eyeRandom = Math.floor(Math.random()*100);
+          let pawRandom = Math.floor(Math.random()*100);
+          if (bodyRandom < 10) { bodyRandom = 10; }
+          if (faceRandom < 10) { faceRandom = 10; }
+          if (eyeRandom < 10) { eyeRandom = 10; }
+          if (pawRandom < 10) { pawRandom = 10; }
+          let eyeshapeRandom = Math.floor(Math.random()*10);
+          if (eyeshapeRandom > 8) { eyeshapeRandom = 0; }
+          let patternRandom = Math.floor(Math.random()*100);
+          if (patternRandom > 45) { patternRandom -= 45; }
+          let sidesRandom = Math.floor(Math.random()*100);
+          if (sidesRandom > 80) { sidesRandom -= 80; }
+          if (sidesRandom > 60) { sidesRandom -= 60; }
+          if (sidesRandom > 40) { sidesRandom -= 40; }
+          if (sidesRandom > 20) { sidesRandom -= 20; }
+          let midRandom = Math.floor(Math.random()*10);
+          let animationRandom = Math.floor(Math.random()*10);
+          if (animationRandom > 9) { animationRandom -= 9; }
+          if (animationRandom > 6) { animationRandom -= 6; }
+          if (animationRandom > 3) { animationRandom -= 3; }
+          let randomDNA = {
+              "headcolor" : bodyRandom,
+              "mouthColor" : faceRandom,
+              "eyesColor" : eyeRandom,
+              "earsColor" : pawRandom,
+              "eyesShape" : eyeshapeRandom,
+              "decorationPattern" : patternRandom,
+              "decorationSidesPattern" : sidesRandom,
+              "decorationMidcolor" : midRandom,
+              "animation" :  animationRandom,
+              "lastNum" :  1
+          }
+          $('#dnabody').html(bodyRandom);
+          $('#dnamouth').html(faceRandom);
+          $('#dnaeyes').html(eyeRandom);
+          $('#dnaears').html(pawRandom);
+          $('#dnashape').html(eyeshapeRandom);
+          $('#dnadecoration').html(patternRandom);
+          $('#dnadecorationMid').html(midRandom);
+          $('#dnadecorationSides').html(sidesRandom);
+          $('#dnaanimation').html(animationRandom);
+          $('#dnaspecial').html(defaultDNA.lastNum);
+          renderCat(randomDNA)
+      }
+      if (id === "create-kitty") {
+      }
+
+  });
 
   renderCat(defaultDNA)
 });
@@ -40,8 +107,8 @@ function getDna(){
     dna += $('#dnaears').html()
     dna += $('#dnashape').html()
     dna += $('#dnadecoration').html()
-    dna += $('#dnadecorationSides').html()
     dna += $('#dnadecorationMid').html()
+    dna += $('#dnadecorationSides').html()
     dna += $('#dnaanimation').html()
     dna += $('#dnaspecial').html()
 
@@ -59,14 +126,18 @@ function renderCat(dna){
     $('#pawcolor').val(dna.earColor);
     $('#eyeshape').val(dna.eyesShape);
     $('#eyeshapecode').html(parseInt(dna.eyesShape * 10) + '%');        // slider state description
+    eyeVariation(dna.eyesShape);
     $('#headdecoration').val(dna.decorationPattern);
     $('#headdecorationcode').html(parseInt(dna.decorationPattern) + '<sup>o</sup>');
+    headDecoration(dna.decorationPattern);
     $('#facesidedecoration').val(dna.decorationSidesPattern);
     $('#facesidedecorationcode').html(parseFloat(dna.decorationSidesPattern/10) + 'em');
+    faceDecorationVariation(dna.decorationSidesPattern);
     $('#taildecoration').val(dna.decorationMidcolor);
     $('#taildecorationcode').html(parseFloat(dna.decorationMidcolor));
-    animationVariation(dna.animation);
+    tailDecorationVariation(dna.decorationMidcolor);
     $('#animation').val(dna.animation);
+    animationVariation(dna.animation);
 }
 
 /* Create Listeners for sliders */
