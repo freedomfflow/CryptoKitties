@@ -198,6 +198,30 @@ function tailDecorationVariation(num) {
     tailDecoration(num);
 }
 
+function animationVariation(num) {
+    console.log('animation variation wiht num = ' + num);
+    clearAnimations();
+    switch(parseInt(num)) {
+        case 1:
+            $('#animationcode').html('Head (' + num + ')');
+            headAnimation();
+            break;
+        case 2:
+            console.log('in case 2');
+            $('#animationcode').html('Tail (' + num + ')');
+            tailAnimation();
+            break;
+        case 3:
+            $('#animationcode').html('Eyes (' + num + ')');
+            eyeAnimation();
+            break;
+        // case 4:
+        //     $('#animationcode').html('Whiskers (' + num + ')');
+        //     whiskerAnimation();
+        //     break;
+    }
+}
+
 async function adjustEyelids(num) {
     let eyelidHeight = '--eyelid-height';
     await document.documentElement.style.setProperty(eyelidHeight, parseInt(num*2) + 'px');
@@ -255,3 +279,28 @@ async function tailDecoration(num) {
     await document.documentElement.style.setProperty(tailDecorationWidth, parseFloat(width) + 'em');
     await document.documentElement.style.setProperty(tailDecorationHeight, parseFloat(height) + 'em');
 }
+
+function clearAnimations() {
+    $('.cat_face, .cat_ears').removeClass('moving_head');
+    $('.cat_tail').removeClass('moving_tail');
+    // $('.cat_legs').after().removeClass('moving_tail_tip');
+    $('.cat_eyes_eyelid').removeClass('moving_eyelids');
+    // $('.cat_whiskers_whisker_l').before().removeClass('moving_whiskers_l');
+}
+
+function headAnimation() {
+    $('.cat_face, .cat_ears').addClass('moving_head');
+}
+
+function tailAnimation() {
+    $('.cat_tail').addClass('moving_tail');
+    // $('.cat_legs').after().addClass('moving_tail_tip');
+}
+
+function eyeAnimation() {
+    $('.cat_eyes_eyelid').addClass('moving_eyelids');
+}
+
+// function whiskerAnimation() {
+//     $('.cat_whiskers_whisker').addClass('moving_whiskers');
+// }

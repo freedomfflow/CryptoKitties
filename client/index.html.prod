@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/kitties.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/factory.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
@@ -164,6 +165,12 @@
                             <input type="range" min="1" max="10" class="form-control-range" id="taildecoration">
                         </div>
                     </div>
+                </div>
+            </div>
+            <div id="animations">
+                <div class="form-group">
+                    <label for="formControlRange"><b>Animations</b><span class="badge badge-dark ml-2" id="animationcode"></span></label>
+                    <input type="range" min="1" max="3" class="form-control-range" id="animation">
                 </div>
             </div>
         </div>

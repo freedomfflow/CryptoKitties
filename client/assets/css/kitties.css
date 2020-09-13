@@ -403,7 +403,7 @@ body {
 
 /* Whisker Position */
 .cat_whiskers_whisker:before, .cat_whiskers_whisker:after, .cat_whiskers_whisker span {
-    border-top: 0.03em solid var(--whisker-color);
+    border-top: 0.04em solid var(--whisker-color);
     height: 0.03em;
     position: absolute;
     left: 0;

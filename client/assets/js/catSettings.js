@@ -49,14 +49,14 @@ function getDna(){
 }
 
 function renderCat(dna){
-    headColor(colors[dna.headcolor],dna.headcolor)
-    $('#bodycolor').val(dna.headcolor)
-    mouthColor(colors[dna.mouthColor],dna.mouthColor)
-    $('#facialfeaturecolor').val(dna.mouthColor)
-    eyeColor(colors[dna.earColor],dna.eyesColor)
-    $('#eyecolor').val(dna.eyesColor)
-    pawColor(colors[dna.earColor],dna.earsColor)
-    $('#pawcolor').val(dna.earColor)
+    headColor(colors[dna.headcolor],dna.headcolor);
+    $('#bodycolor').val(dna.headcolor);
+    mouthColor(colors[dna.mouthColor],dna.mouthColor);
+    $('#facialfeaturecolor').val(dna.mouthColor);
+    eyeColor(colors[dna.earColor],dna.eyesColor);
+    $('#eyecolor').val(dna.eyesColor);
+    pawColor(colors[dna.earColor],dna.earsColor);
+    $('#pawcolor').val(dna.earColor);
     $('#eyeshape').val(dna.eyesShape);
     $('#eyeshapecode').html(parseInt(dna.eyesShape * 10) + '%');        // slider state description
     $('#headdecoration').val(dna.decorationPattern);
@@ -65,6 +65,8 @@ function renderCat(dna){
     $('#facesidedecorationcode').html(parseFloat(dna.decorationSidesPattern/10) + 'em');
     $('#taildecoration').val(dna.decorationMidcolor);
     $('#taildecorationcode').html(parseFloat(dna.decorationMidcolor));
+    animationVariation(dna.animation);
+    $('#animation').val(dna.animation);
 }
 
 /* Create Listeners for sliders */
@@ -101,4 +103,8 @@ $('#facesidedecoration').change(()=>{
 $('#taildecoration').change(()=>{
     var num = $('#taildecoration').val();
     tailDecorationVariation(num);
+})
+$('#animations').change(()=>{
+    var num = $('#animation').val();
+    animationVariation(num);
 })

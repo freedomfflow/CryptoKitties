@@ -1,0 +1,78 @@
+.moving_head {
+    animation: moveHead 1s 0.5s;
+}
+.moving_tail {
+    animation: moveTail 0.5s 0.5s;
+}
+.moving_tail_tip {
+    /*animation: moveTailTip 0.5s linear 0.5s;*/
+}
+.moving_whiskers {
+    animation: moveWhiskers 2s 2s;
+}
+.moving_eyelids {
+    animation: moveEyelids 1s 0.5s;
+}
+
+@keyframes moveHead {
+    0% {
+        transform: rotate3d(1, 1, 1, 45deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    60% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes moveTail {
+    0%,100% {
+        transform: rotate(0deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    60% {
+        transform: rotate(-5deg);
+    }
+}
+
+@keyframes moveEyelids {
+    0%, 100% {
+        height: 0;
+    }
+    30% {
+        height: 10px;
+    }
+    60% {
+        height: 20px;
+    }
+}
+
+/*@keyframes moveTailTip {*/
+/*    0%, 100% {*/
+/*        margin-bottom: -0.25em;*/
+/*    }*/
+/*    30% {*/
+/*        margin-bottom: -0.5em;*/
+/*    }*/
+/*    60% {*/
+/*        margin-bottom: 0;*/
+/*    }*/
+/*}*/
+
+/*@keyframes moveWhiskers{*/
+/*    0%, 100% {*/
+/*        width: 2.5em;*/
+/*    }*/
+/*    30% {*/
+/*        width: 1.5em;*/
+/*    }*/
+/*    60% {*/
+/*        width: 3.5em;*/
+/*    }*/
+/*}*/
