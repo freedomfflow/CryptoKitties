@@ -1,2 +1,4 @@
-# academy-kitties-template
-A starter template for bootcamp students building the cryptokitty clone.
+# Crypto Kitties Project
+Project to learn Solidity
+
+Using ganache local blockchain
