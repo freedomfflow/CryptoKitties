@@ -2,15 +2,27 @@ pragma solidity ^0.5.12;
 
 import "./IERC721.sol";
 import "./SafeMath.sol";
+import "./Ownable.sol";
 
-contract Kittycontract is IERC721 {
+contract Kittycontract is IERC721, Ownable {
 
     using SafeMath for uint256;
+
+    uint256 public constant CREATION_LIMIT_GEN0 = 10;
 
     // NOTE: since these are public, getters auto gen'd and we don't need to add our own getters
     //  to comply with interface
     string public constant name = "WolffKitties";
     string public constant symbol = "WK";
+
+    // Birth Event
+    event Birth(
+        address owner,
+        uint256 kittenId,
+        uint256 maternalId,
+        uint256 paternalId,
+        uint256 geneSequence
+    );
 
     // Cat Structure
     struct Kitty {
@@ -26,9 +38,68 @@ contract Kittycontract is IERC721 {
 
     // Cat id mapped to owner address
     mapping(uint256 => address) public kittyOwner;
-
     // Owner address mapped to quantity owned
     mapping(address => uint256) ownershipTokenCount;
+
+    uint256 public gen0Count;
+
+    // Get Kitty
+    /*
+     * defining whats returned in 'returns' instead of a return statement in the function body
+     *  - this is an in effect same difference, just a cleaner way of doing with multiple vals
+     * returning all values as unint256 as much easier to read
+    */
+    function getKitty(uint256 _id) external view returns (
+        uint256 geneSequence,
+        uint256 birthTime,
+        uint256 maternalId,
+        uint256 paternalId,
+        uint256 generation
+    ) {
+        Kitty storage kitty = kitties[_id];
+
+        birthTime = uint256(kitty.birthTime);
+        maternalId = uint256(kitty.maternalId);
+        paternalId = uint256(kitty.paternalId);
+        generation = uint256(kitty.generation);
+        geneSequence = uint256(kitty.geneSequence);
+    }
+
+    // Generation 0 Kitty creation function usable only by contract owner
+    function createKittyGen0(uint256 _geneSequence) public onlyOwner returns (uint256) {
+        require(gen0Count < CREATION_LIMIT_GEN0);
+
+        gen0Count++;
+
+        return _createKitty(0, 0, 0, _geneSequence, msg.sender);
+    }
+
+    // Function to create Kitty
+    function _createKitty(
+        uint256 _maternalId,
+        uint256 _paternalId,
+        uint256 _generation,
+        uint256 _geneSequence,
+        address _owner
+    ) private returns (uint256) {
+        Kitty memory _kitty = Kitty({
+            geneSequence: _geneSequence,
+            birthTime: uint64(now),
+            maternalId: uint32(_maternalId),
+            paternalId: uint32(_paternalId),
+            generation: uint16(_generation)
+        });
+
+        // 'push' returns size of array - we want to start id's from 0, so we subtract 1
+        uint256 newKittenId = kitties.push(_kitty) - 1;
+
+        emit Birth(_owner, newKittenId, _maternalId, _paternalId, _geneSequence);
+
+        // Address 0 implies this is a 'birth', as its not transferred from a previous owner
+        _transfer(address(0), _owner, newKittenId);
+
+        return newKittenId;
+    }
 
     // How many kitties (721's) does an address own
     function balanceOf(address owner) external view returns (uint256 balance) {
@@ -43,7 +114,7 @@ contract Kittycontract is IERC721 {
     // Returns the owner address of the token
     function ownerOf(uint256 _tokenId) external view returns (address) {
         // Token must exist
-//        require(kittyOwner[_tokenId].exists,  'Token Id not found');
+        // require(kittyOwner[_tokenId].exists,  'Token Id not found');
         // TODO need to debug above require, not working
 
         return kittyOwner[_tokenId];
