@@ -140,6 +140,8 @@ function renderCat(dna){
     animationVariation(dna.animation);
 }
 
+/* Create Listener for Kitty Birth Event */
+
 /* Create Listeners for sliders */
 // Changing cat colors
 $('#bodycolor').change(()=>{

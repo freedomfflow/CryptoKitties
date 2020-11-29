@@ -168,7 +168,7 @@ async function pawColor(color,code) {
 }
 
 //###################################################
-//Functions below will be used later on in the project
+// Cat variation functions
 //###################################################
 function eyeVariation(num) {
     // Set displayed dna value for eye shape
