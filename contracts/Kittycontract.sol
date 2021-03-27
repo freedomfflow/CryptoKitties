@@ -56,6 +56,7 @@ contract Kittycontract is IERC721, Ownable {
         uint256 paternalId,
         uint256 generation
     ) {
+        // Use 'storage' here as it creates a pointer -- if we used 'memory', it would create a local copy
         Kitty storage kitty = kitties[_id];
 
         birthTime = uint256(kitty.birthTime);
@@ -147,5 +148,19 @@ contract Kittycontract is IERC721, Ownable {
 
         // Emit transfer event
         emit Transfer(_from, _to, _tokenId);
+    }
+
+    // Get a list of all kitty id's for an owner
+    function getKittiesByOwner(address _owner) external view returns(uint[] memory) {
+        uint[] memory result = new uint[](ownershipTokenCount[_owner]);
+        uint kittyCount = 0;
+        for (uint i = 0; i < kitties.length; i++) {
+            if (kittyOwner[i] == _owner) {
+                result[kittyCount] = i;
+                kittyCount++;
+            }
+        }
+
+        return result;
     }
 }

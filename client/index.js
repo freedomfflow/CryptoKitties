@@ -3,7 +3,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x40FcC0549eC0D3a12C43b15c92Cb9CA486D31db3";
+var contractAddress = "0x366C1CFa85f875E85111675C3736C2e14CC19a2b";
 
 $(document).ready(function() {
     // Prompt user
@@ -22,19 +22,26 @@ $(document).ready(function() {
          *  - the 'var abi = ...' copy the entire array
          *  - then in index.html, import the abi.js file
          */
-        // console.log(instance);
+        console.log(instance);
 
         /*
          *  Send msg to screen upon successful kitty generation
          */
-        instance.events.Birth().on('data', (event) => {
+        instance.events.Birth().on('data', function(event) {
+            console.log('Birth Event Sent');
+            console.log(event);
             // console.log(event.returnValues);
-            let msg = 'Owner: ' + event.returnValues.owner + '\n';
-            msg += ' KittyId: ' + event.returnValues.kittenId + '\n';
-            msg += ' DNA Sequence; ' + event.returnValues.geneSequence + '\n';
-            alert(msg);
+            let owner = event.returnValues.owner;
+            let kittenId = event.returnValues.kittenId;
+            let maternalId = event.returnValues.maternalId;
+            let paternalId = event.returnValues.paternalId;
+            let genes = event.returnValues.geneSequence;
+            // let msg = 'Owner: ' + event.returnValues.owner + '\n';
+            // msg += ' KittyId: ' + event.returnValues.kittenId + '\n';
+            // msg += ' DNA Sequence; ' + event.returnValues.geneSequence + '\n';
+            // alert(msg);
         })
-        .on('error'), console.log(error);
+        .on('error', console.error);
     })
 
     // Create Kitty click function to write new kitty to blockchain
@@ -46,11 +53,35 @@ $(document).ready(function() {
 });
 
 function createKitty(dnaStr) {
+    console.log('Create Kitty DNA STRING');
+    console.log(dnaStr);
     instance.methods.createKittyGen0(dnaStr).send({}, (error, txnHash) => {
         if(error) {
-            console.log(err);
+            console.log('Instance Error - create Kitty Gen0');
+            console.log(error);
         } else {
-            // console.log('Txn Hash = ' + txnHash);
+            console.log('Txn Hash = ' + txnHash);
         }
     });
+}
+
+// Get all the kitties for an owner
+async function getKitties() {
+    let id;
+    let kitty;
+    try {
+        id = await instance.methods.getKittiesByOwner(user).call();
+    } catch (err) {
+        console.log('Error getting kitties by owner');
+        console.log(err);
+    }
+
+    // For each kitty, we need to render
+    // - with react, render a component -- append component selector to new html page
+    // - with jquery, need to modify all the css selectors to us a dynamic index
+    for (i = 0; i < id.length; i++) {
+        kitty = await instance.methods.getKitty(id[i]).call();
+        console.log('Got Kitty struct data');
+        console.log(kitty);
+    }
 }
